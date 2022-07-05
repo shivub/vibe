@@ -30,7 +30,6 @@ export class ListService{
     }
 
     public removeFromWatchLater(show: ShowModel){
-        debugger
         const index = this.lists[WATCH_LATER].findIndex(s => s.id === show.id);
         if(index >= 0)
         {

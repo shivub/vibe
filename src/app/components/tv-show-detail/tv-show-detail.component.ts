@@ -59,7 +59,6 @@ export class TvShowDetailComponent implements OnInit {
     this._configService.getImageConfiguration()
     .pipe(
       mergeMap((config) => {
-        console.log(config.images);
         this.imageBaseUrl = config.images.base_url;
         return this._showService.getTvShowDetails(this._id);
       })

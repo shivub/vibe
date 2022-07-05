@@ -27,7 +27,6 @@ export class ShowcardComponent implements OnInit {
     private _router: Router) { }
 
   public ngOnInit(): void {
-    console.log(this.context);
     this.path = this.context.media_type === 'movie'? '/movie-detail': '/tv-detail';
     this.updateFlags();
   }

@@ -39,10 +39,6 @@ export class BannerComponent implements OnInit {
       backgroundSize: 'cover',
       color: '#fff',
     }
-    
-    this.authService.authState.subscribe(val => {
-      console.log(val);
-    })
   }
 
   public goToPrevSlide()
@@ -61,9 +57,5 @@ export class BannerComponent implements OnInit {
     const styleState = cloneDeep(this.bannerStyle);
     this.bannerStyle = {...styleState, background: this._bannerStyle + ', ' + this._movieUrl[++this._slideIndex]};
     this._containerRef.createEmbeddedView(this._templateRef);
-  }
-
-  public signInWithGoogle(){
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 }

@@ -49,7 +49,6 @@ export class ShowDetailComponent implements OnInit {
     this._configService.getImageConfiguration()
     .pipe(
       mergeMap((config) => {
-        console.log(config.images);
         this.imageBaseUrl = config.images.base_url;
         return this._showService.getMovieDetails(700);
       })
@@ -58,7 +57,6 @@ export class ShowDetailComponent implements OnInit {
       this.showDetail.backdrop_path = this.imageBaseUrl + 'w780/' + this.showDetail.backdrop_path;
       containerStyle.background = `linear-gradient(-45deg,rgba(42, 42, 42,0.9) 70%, transparent 100%) , url("${this.showDetail.backdrop_path}")`;
       this.cardContext = {id: this.showDetail.id, title: this.showDetail.original_title, name: '', poster_path: this.showDetail.poster_path, media_type: 'movie'}
-      console.log(this.cardContext);
       this.containerStyle = containerStyle;
       this._cd.detectChanges();
     });
