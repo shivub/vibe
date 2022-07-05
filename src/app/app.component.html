@@ -1,0 +1,9 @@
+<div class = "app-container">
+    <app-navbar (searchEmitter) = 'onActivateSearch($event)'></app-navbar>
+    <router-outlet></router-outlet>
+    <div *ngIf = "isSearchActive" class = "search-screen">
+        <app-search></app-search>
+    </div>
+    <!-- <app-show-detail></app-show-detail> -->
+    <!-- <app-movie-detail></app-movie-detail> -->
+</div>

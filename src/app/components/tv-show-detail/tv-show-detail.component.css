@@ -1,0 +1,107 @@
+.detail{
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    gap: 60px;
+    padding: 10px 0px 0px 50px;
+}
+
+.show-detail-coontainer{
+    padding-top: 63px;
+}
+
+.show-title{
+    font-size: 3rem;
+    font-weight: bold;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    padding-left: 0px;
+    line-height: 3rem;
+}
+
+.information{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.show-info{
+    display: flex;
+    gap: 10px;
+    font-size: 1rem;
+}
+
+.language{
+    border: 1px solid white;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.buttons{
+    display: flex;
+    gap: 20px;
+}
+
+.list-actions{
+    display: flex;
+    gap: 10px;
+}
+
+.fab{
+    color: white;
+    background-color: transparent;
+    border: 0px solid black;
+    cursor: pointer;
+}
+
+.tagline{
+    font-size: 1rem;
+    color: gray;
+    font-weight: bolder;
+}
+
+.overview-title{
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.overview-text{
+    font-size: 1rem;
+}
+
+.show-buttons{
+    background: linear-gradient(270deg, #D9D9D9 0%, rgba(11, 186, 186, 0.99) 0%, #0CC68E 100%);
+    color: white;
+    /* width: 100px; */
+    height: 50px;
+    font-size: 1rem;
+}
+
+.reviews{
+    background-color: #303030;
+    color: white;
+    padding: 30px;
+}
+
+.header{
+    font-size: 2rem;
+}
+
+.review-form{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.review-list{
+    padding: 30px;
+}
+
+.review-card{
+    margin: 10px;
+}
+
+.submit-btn{
+    align-self: flex-end;
+}

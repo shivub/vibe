@@ -1,0 +1,20 @@
+.search-container{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 100px;
+    align-items: center;
+}
+button[mat-button]{
+    background-color: transparent;
+    border-color: transparent;
+    font-weight: bold;
+    color: whitesmoke;
+    cursor: pointer;
+    padding: 0;
+}
+
+[hidden] { display: none !important;}
+
+.search-icon {width: 50px;}

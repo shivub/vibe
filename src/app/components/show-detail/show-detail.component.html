@@ -1,0 +1,39 @@
+<div class="show-detail-coontainer">
+    <section *ngIf = "showDetail" class="detail" [style] = "containerStyle">
+        <section class="poster">
+            <app-showcard *ngIf = "cardContext" [context] = "cardContext" [imageBaseUrl] = "imageBaseUrl + '/w342'"></app-showcard>
+        </section>
+        <section class="information">
+            <div class="show-basic-info">
+                <div class = "show-title">
+                    {{showDetail.original_title}}
+                    <button class = "fab" mat-icon-fab><mat-icon>watch_later</mat-icon></button>
+                    <button class = "fab" mat-icon-fab><mat-icon>favorite</mat-icon></button>
+                    
+                </div>
+                
+                <div class = "show-info"> 
+                    <img width = "30" height = "15" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/863px-IMDB_Logo_2016.svg.png?20200406194337" alt="">
+                    <span>{{showDetail.vote_average}}</span> 
+                    <span>|</span>
+                    <span>{{showDetail.release_date}}</span> 
+                    <span>|</span>
+                    <span class = "language">{{showDetail.original_language}}</span> 
+                    <span>|</span>
+                    <span>{{showDetail.runtime}} mins</span> 
+                </div>
+            </div>
+            <div class = "tagline"><span><i>{{showDetail.tagline}}</i></span></div>
+            <div class = "overview">
+                <p class = "overview-title">Overview:</p>
+                <p class = "overview-text">{{showDetail.overview}}</p>
+            </div>
+            <div class = "buttons">
+                <button class = "show-buttons" mat-button><mat-icon>play_arrow</mat-icon>Watch</button>
+                <button class = "show-buttons" mat-button><mat-icon>star</mat-icon>Rate</button>
+            </div>
+            
+        </section>
+    </section>
+    <section class="reviews"></section>
+</div>

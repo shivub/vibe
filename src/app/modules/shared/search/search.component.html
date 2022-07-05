@@ -1,0 +1,12 @@
+<!-- <div id = "search-container">
+    <mat-form-field [hidden] = "!showSearchBar" floatLabel="never">
+        <input #searchBar (input) = "onSearchTextChange(searchBar.value)" (blur) = "onSearchFocusOut()" matInput placeholder="search">
+    </mat-form-field>
+    <button mat-button (click) = "onSearchClicked()"><mat-icon class = "search-icon">search</mat-icon></button>
+</div> -->
+
+<div class = "search-container">
+    <ng-container *ngFor = "let show of showList">
+        <app-showcard [context] = "show" [imageBaseUrl] = "imageBaseUrl"></app-showcard>
+    </ng-container>
+</div>

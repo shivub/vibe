@@ -1,0 +1,23 @@
+
+<div class = 'show-card'>
+    <a [routerLink]="[path, context.id]">  
+        <img *ngIf = "context?.poster_path" class = "poster" [src] = "imageBaseUrl+context?.poster_path">
+        <div *ngIf = "showListMenu" class = "container" [ngClass] = "{'no-poster-conteiner': context?.poster_path === null || context?.poster_path === undefined}">
+            <img [ngClass] = "{'no-poster': context?.poster_path === null || context?.poster_path === undefined }" class = "logo" src="./../../../../assets/Images/Vibe_logo_white.svg">
+            <p class = "title" *ngIf = "!context?.poster_path">{{context.media_type === 'movie' ? context.title: context.name}}</p>
+        </div>
+    </a>
+    <div *ngIf = "showListMenu" class = "menu">
+        <button (click) = "addToWatchLater()" mat-icon-button><mat-icon [style.color] = "context.isWatchLater? '#0bbabafc': 'black'">watch_later</mat-icon></button>
+        <button (click) = "addToFavourites()" mat-icon-button><mat-icon [style.color] = "context.isfavourite? '#0bbabafc': 'black'">{{context.isfavourite? 'favorite': 'favorite_border' }}</mat-icon></button>
+        <button (click) = "addToWatched()" mat-icon-button [matMenuTriggerFor] = "playlistMenu"><mat-icon>play_arrow</mat-icon></button>
+    </div>
+</div>
+
+<mat-menu #playlistMenu = "matMenu" class = "playlist-menu">
+    <ng-container *ngFor = "let list of getPlayLists()">
+        <button mat-menu-item><mat-checkbox class = "list-checkbox">{{list}}</mat-checkbox></button>
+    </ng-container>
+    <button mat-menu-item>Create New List</button>
+</mat-menu>
+

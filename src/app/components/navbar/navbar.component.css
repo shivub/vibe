@@ -1,0 +1,58 @@
+.toolbar{
+    font-size: large;
+    background: #0E3056;
+}
+
+a{
+    cursor: pointer;
+}
+
+button[mat-button]{
+    color: white;
+    cursor: pointer;
+}
+
+.fill-remaining-space{
+    flex-grow: 1;
+}
+
+.active{
+    color: #0bbabafc !important;
+    font-weight: bolder !important;
+    font-size: larger !important;
+}
+
+::ng-deep .customize {
+    background: white;
+}
+
+button[mat-menu-item]{
+    color: black;
+}
+
+button[mat-menu-item]:hover{
+    background:linear-gradient(270deg, #0E3056 0.87%, #045A6C 100%);
+    color: white;
+}
+
+.lang-selector{
+    border: 1px solid white!important;
+}
+
+.search-bar{
+    width: 100%;
+    height: 50%;
+    border: 1px solid whitesmoke;
+    font-size: 1rem;
+    background-color: transparent;
+    color: whitesmoke;
+    border-radius: 10px;
+}
+
+.search-bar:focus{
+    border: 0px solid whitesmoke;
+}
+
+.avatar{
+    border-radius: 50%;
+}

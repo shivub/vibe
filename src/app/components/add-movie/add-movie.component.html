@@ -1,0 +1,59 @@
+<div class = "add-movie-container">
+    
+    <form class = "movie-form" [formGroup] = "movieForm" (ngSubmit) = "onSubmit(movieForm)">
+        <mat-card class = "form-header-card">
+            <h1>Add Movie</h1>
+        </mat-card>
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Title</mat-label>
+                <input matInput placeholder="Title of Movie" formControlName = "title">
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control" >
+                <mat-label>Original Language</mat-label>
+                <input matInput placeholder="language of Movie" formControlName = "language">
+            </mat-form-field>
+        </mat-card>
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Overview</mat-label>
+                <textarea matInput placeholder="Description of Movie" formControlname = "overview"></textarea>
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Tagline</mat-label>
+                <textarea matInput placeholder="popular tagline of Movie" formControlName = "tagline"></textarea>
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>A Rated</mat-label>
+                <mat-select formControlName = "adult">
+                    <mat-option value = "Yes">Yes</mat-option>
+                    <mat-option value = "No">No</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Release Date</mat-label>
+                <input matInput placeholder="release date" formControlName = "releaseDate">
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Runtime</mat-label>
+                <input matInput placeholder="length of Movie in mins" formControlName = "runtime">
+            </mat-form-field>
+        </mat-card>
+        <button class = "save-btn" mat-button type = "submit">Save</button>
+    </form>
+</div>

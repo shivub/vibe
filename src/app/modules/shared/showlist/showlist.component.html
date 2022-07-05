@@ -1,0 +1,11 @@
+<div *ngIf = "shows && shows.length > 0"class = "list-container">
+    <section class = "list-header">
+        <h2>{{browseCategory}}</h2>
+    </section>
+    <div class="scrolling-wrapper">
+        <ng-container *ngFor = "let show of shows">
+            <app-showcard [showListMenu] = "true" [imageBaseUrl] = "imageBaseUrl" [context] = "show" class = "card"></app-showcard>
+        </ng-container>
+    </div>
+</div>
+  

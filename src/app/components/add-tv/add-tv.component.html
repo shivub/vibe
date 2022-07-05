@@ -1,0 +1,49 @@
+<div class = "add-movie-container">
+    
+    <form class = "movie-form" [formGroup] = "movieForm" (ngSubmit) = "onSubmit(movieForm)">
+        <mat-card class = "form-header-card">
+            <h1>Add Tv Show</h1>
+        </mat-card>
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Name</mat-label>
+                <input matInput placeholder="Title of Movie" formControlName = "name">
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control" >
+                <mat-label>Original Language</mat-label>
+                <input matInput placeholder="language of Movie" formControlName = "language">
+            </mat-form-field>
+        </mat-card>
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Overview</mat-label>
+                <textarea matInput placeholder="Description of Movie" formControlname = "overview"></textarea>
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Tagline</mat-label>
+                <textarea matInput placeholder="popular tagline of Movie" formControlName = "tagline"></textarea>
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Number Of Seasons</mat-label>
+                <input matInput placeholder="release date" formControlName = "seasonsNumber">
+            </mat-form-field>
+        </mat-card>
+
+        <mat-card class = "control-card">
+            <mat-form-field class = "form-control">
+                <mat-label>Total episodes</mat-label>
+                <input matInput placeholder="length of Movie in mins" formControlName = "episodesNumber">
+            </mat-form-field>
+        </mat-card>
+        <button class = "save-btn" mat-button type = "submit">Save</button>
+    </form>
+</div>

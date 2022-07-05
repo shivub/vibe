@@ -1,0 +1,61 @@
+<div class="show-detail-coontainer">
+    <section *ngIf = "showDetail" class="detail" [style] = "containerStyle">
+        <!-- <section class="poster">
+            <app-showcard *ngIf = "cardContext" [context] = "cardContext" [imageBaseUrl] = "imageBaseUrl + '/w342'"></app-showcard>
+        </section> -->
+        <section class="information">
+            <div class="show-basic-info">
+                <div class = "show-title">
+                    {{showDetail.title}}
+                    <button (click) = "markWatchLater()" class = "fab" mat-icon-fab><mat-icon [style.color] = "isWatchLater? '#0bbabafc': 'white'">watch_later</mat-icon></button>
+                    <button (click) = "markFavourite()" class = "fab" mat-icon-fab><mat-icon [style.color] = "isFav? '#0bbabafc': 'white'">favorite</mat-icon></button>
+                    
+                </div>
+                
+                <div class = "show-info"> 
+                    <img width = "30" height = "15" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/863px-IMDB_Logo_2016.svg.png?20200406194337" alt="">
+                    <span>{{showDetail.vote_average}}</span> 
+                    <span>|</span>
+                    <span>{{showDetail.release_date}}</span> 
+                    <span>|</span>
+                    <span class = "language">{{showDetail.original_language}}</span> 
+                    <span>|</span>
+                    <span>{{showDetail.runtime}} mins</span> 
+                </div>
+            </div>
+            <div class = "tagline"><span><i>{{showDetail.tagline}}</i></span></div>
+            <div class = "overview">
+                <p class = "overview-title">Overview:</p>
+                <p class = "overview-text">{{showDetail.overview}}</p>
+            </div>
+            <div class = "buttons">
+                <button (click) = "markWatched()" class = "show-buttons" mat-button><mat-icon>play_arrow</mat-icon>{{isWatched? 'Watch Again': 'Watch'}}</button>
+                <button class = "show-buttons" mat-button><mat-icon>star</mat-icon>Rate</button>
+            </div>
+            
+        </section>
+    </section>
+    <section class="reviews">
+        <div class = "header">Reviews</div>
+        <form class = "review-form">
+            <mat-form-field class="rate-textbox" appearance="fill">
+                <mat-label>Rate Movie</mat-label>
+                <input matInput placeholder="Rate out of 10">
+              </mat-form-field>
+            <mat-form-field class="review-text-area" appearance="fill">
+                <mat-label>Write a Review</mat-label>
+                <textarea matInput placeholder="What you feel about movie"></textarea>
+            </mat-form-field>
+            <button class = "submit-btn" mat-button> Submit </button>
+        </form>
+        <div class = "review-list">
+            <ng-continer *ngFor = "let review of reviews">
+                <mat-card class = "review-card">
+                    <mat-card-title>{{review.author}}</mat-card-title>
+                    <mat-card-subtitle>Rating :{{review.author_details.rating}}/10</mat-card-subtitle>
+                    <mat-card-content>{{review.content}}</mat-card-content>
+                </mat-card>
+            </ng-continer>
+        </div>
+    </section>
+</div>

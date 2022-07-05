@@ -1,0 +1,31 @@
+<!-- 
+    Why ngTemplateOutlet approach?
+    
+    Problem: I wanted to change the background picture of movie banner when user changes the slide.
+    For that I provided the styles through code. But on changing the slide the image was not rendering
+    properly as only the background property of style was getting changed and angular was not re rendering
+    the element. 
+
+    In order to forcefully re render the element this approach is used
+-->
+
+<ng-container #outlet [ngTemplateOutlet]="content">
+</ng-container>
+
+<ng-template #content>
+    <div class = "movie-banner" [style] = "bannerStyle">
+        <div class = "content-wrapper">
+            <button class = "slide-buttons" (click) = "goToPrevSlide()" mat-mini-fab><mat-icon>chevron_left</mat-icon></button>
+            <div class = "content">
+                <div class = "note">
+                    <p class = "welcome">All time great movies, tv shows and unlimited fun.</p>
+                    <p class = "tagline">Exclusively on Vibe. Watch on any device.</p>
+                </div>
+                <div>
+                    <a routerLink = '/login' mat-button class = "baneer-button">Sign in </a>
+                </div>
+            </div>
+            <button class = "slide-buttons" (click) = "goToNextSlide()" mat-mini-fab><mat-icon>chevron_right</mat-icon></button>
+        </div>
+    </div>
+</ng-template>

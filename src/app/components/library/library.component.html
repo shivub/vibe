@@ -1,0 +1,5 @@
+<div>
+    <ng-container *ngFor = "let cat of listNames">
+        <app-showlist [shows] = "listsData[cat]" [browseCategory] = "cat" [imageBaseUrl] = "imageBaseUrl"></app-showlist>
+    </ng-container>
+</div>
