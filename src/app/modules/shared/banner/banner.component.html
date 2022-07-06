@@ -22,7 +22,8 @@
                     <p class = "tagline">Exclusively on Vibe. Watch on any device.</p>
                 </div>
                 <div>
-                    <a routerLink = '/login' mat-button class = "baneer-button">Sign in </a>
+                    <a *ngIf = "!isLoggedin" routerLink = '/login' mat-button class = "baneer-button">Sign in </a>
+                    <a  (click) = "getPrime()" *ngIf = "isLoggedin && !isPrimeUser()"  mat-button class = "baneer-button">Upgrade To Prime </a>
                 </div>
             </div>
             <button class = "slide-buttons" (click) = "goToNextSlide()" mat-mini-fab><mat-icon>chevron_right</mat-icon></button>

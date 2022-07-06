@@ -4,7 +4,7 @@ import { forkJoin, mergeMap } from 'rxjs';
 import { MovieDetailModel } from 'src/app/models/MovieDetailModel';
 import { ReviewModel } from 'src/app/models/ReviewModel';
 import { ShowModel } from 'src/app/models/ShowModel';
-import { AppInitService } from 'src/app/services/AppinitService';
+import { UserService } from 'src/app/services/UserService';
 import { ConfigurationService } from 'src/app/services/ConfigurationService';
 import { ListService } from 'src/app/services/ListsService';
 import { ShowService } from 'src/app/services/ShowService';
@@ -32,7 +32,7 @@ export class MovieDetailComponent implements OnInit {
     private _cd: ChangeDetectorRef,
     private _listService: ListService,
     private _router: Router,
-    private _appInit: AppInitService) { }
+    private _userService: UserService) { }
   
 
   public get showDetail(){
@@ -80,7 +80,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   public markWatchLater(){
-    if(!this._appInit.isUserLoggedIn()){
+    if(!this._userService.isUserLoggedIn()){
       this._router.navigateByUrl('/login');
       ReadableStreamDefaultController;
     }
@@ -93,7 +93,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   public markFavourite(){
-    if(!this._appInit.isUserLoggedIn()){
+    if(!this._userService.isUserLoggedIn()){
       this._router.navigateByUrl('/login');
       return;
     }
@@ -107,7 +107,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   public markWatched(){
-    if(!this._appInit.isUserLoggedIn()){
+    if(!this._userService.isUserLoggedIn()){
       this._router.navigateByUrl('/login');
       return;
     }

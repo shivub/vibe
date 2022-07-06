@@ -1,6 +1,8 @@
 import { GoogleLoginProvider, SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, ElementRef, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { TitleStrategy } from '@angular/router';
 import cloneDeep from 'clone-deep';
+import { UserService } from 'src/app/services/UserService';
 @Component({
   selector: 'app-banner',
   templateUrl: './banner.component.html',
@@ -25,8 +27,9 @@ export class BannerComponent implements OnInit {
   
 
   public bannerStyle: any;
+  public isLoggedin!: boolean;
 
-  constructor(private authService: SocialAuthService) { }
+  constructor(private authService: SocialAuthService, private _userServie: UserService) { }
 
   ngOnInit(): void {
     this.bannerStyle = {
@@ -39,6 +42,10 @@ export class BannerComponent implements OnInit {
       backgroundSize: 'cover',
       color: '#fff',
     }
+    this._userServie.getUser().subscribe(user => 
+      {
+        this.isLoggedin = user.userDetails !==undefined && user.userDetails !== null;
+      });
   }
 
   public goToPrevSlide()
@@ -57,5 +64,13 @@ export class BannerComponent implements OnInit {
     const styleState = cloneDeep(this.bannerStyle);
     this.bannerStyle = {...styleState, background: this._bannerStyle + ', ' + this._movieUrl[++this._slideIndex]};
     this._containerRef.createEmbeddedView(this._templateRef);
+  }
+
+  public isPrimeUser(){
+    return this._userServie.isPrime();
+  }
+
+  public getPrime(){
+    this._userServie.updateToPrime();
   }
 }
