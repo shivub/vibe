@@ -1,6 +1,6 @@
 export class AuthorDetailMode{
-    name!: string;
+    name?: string;
     username!: string;
-    avatar_path!: string;
+    avatar_path?: string;
     rating!: number;
 }

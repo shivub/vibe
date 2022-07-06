@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
     this._configService.getImageConfiguration()
     .subscribe((val) => {
-      this.imageBaseUrl = val.images.base_url + '/w342'
+      this.imageBaseUrl = val.images.base_url + '/w185'
     });
 
     this._searchService.getSearchEmitter()

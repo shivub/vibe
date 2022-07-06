@@ -19,7 +19,7 @@ import { GoogleLoginProvider, SocialAuthService, SocialAuthServiceConfig, Social
 import { GOOGLE_CLIENT_ID } from './shared/constants/category.const';
 import { LoginComponent } from './components/login/login.component';
 import { UserService } from './services/UserService';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddMovieComponent } from './components/add-movie/add-movie.component';
 import { AddTvComponent } from './components/add-tv/add-tv.component';
 
@@ -56,7 +56,8 @@ function initializeApp(userService: UserService){
     SharedModule,
     HttpClientModule,
     SocialLoginModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     ShowService,
