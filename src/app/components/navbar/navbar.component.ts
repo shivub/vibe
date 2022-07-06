@@ -1,8 +1,8 @@
-import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { ChangeDetectorRef, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SearchService } from 'src/app/services/SearchService';
 import { ShowService } from 'src/app/services/ShowService';
+import { UserService } from 'src/app/services/UserService';
 
 @Component({
   selector: 'app-navbar',
@@ -14,7 +14,9 @@ export class NavbarComponent implements OnInit {
   public activeLanguage = this.languageOptions[0];
   public activeRoute = 'home';
   public isSearchActive: boolean = false;
-  public photoUrl!: string;
+  public photoUrl!: string | undefined;
+  public isUserLoggedIn!: boolean;
+  public isUserAdmin!: boolean;
   public langEmitter: EventEmitter<number> = new EventEmitter<number>();
   public accountEmitter: EventEmitter<void> = new EventEmitter<void>();
   @Output()
@@ -26,8 +28,8 @@ export class NavbarComponent implements OnInit {
     private _cd: ChangeDetectorRef, 
     private _showService: ShowService,
     private _searchService: SearchService,
-    private _authService: SocialAuthService,
-    private _router: Router
+    private _router: Router,
+    private _userService: UserService
     ) { }
 
   ngOnInit(): void {
@@ -36,8 +38,10 @@ export class NavbarComponent implements OnInit {
       this._showService.emitBrowseType(this._category??'home');
     });
 
-    this._authService.authState.subscribe((user) => {
-      this.photoUrl = user.photoUrl;
+    this._userService.getUser().subscribe((user) => {
+      this.photoUrl = user.userDetails?.photoUrl;
+      this.isUserLoggedIn = user.userDetails !== undefined && user.userDetails !== null;
+      this.isUserAdmin = user.isAdmin;
     })
   }
   public search(searchText: string){
@@ -48,10 +52,6 @@ export class NavbarComponent implements OnInit {
   public onLanguageChange(index: number) {
     this.activeLanguage = this.languageOptions[index];
     this.langEmitter.emit(index);
-  }
-
-  public onAccoutClick(){
-    this.accountEmitter.emit();
   }
 
   public changeActiveRoute(route: string){
@@ -71,5 +71,24 @@ export class NavbarComponent implements OnInit {
 
   public addTvShow(){
     this._router.navigateByUrl('/add-tv');
+  }
+
+  public getPrime(){
+    this._userService.updateToPrime();
+  }
+
+  public getAdminRights(){
+    if(this.isUserAdmin){
+      return;
+    }
+    this._userService.giveAdminRights();
+  }
+
+  public signOut(){
+    this._userService.signOut();
+  }
+
+  public isUserPrime(){
+    return this._userService.isPrime();
   }
 }

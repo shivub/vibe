@@ -1,4 +1,3 @@
-<!-- <app-showcard></app-showcard> -->
 <app-banner></app-banner>
 <ng-container *ngFor = "let cat of browseCat">
     <app-showlist [shows] = "(showDict[cat] | async)?? []" [browseCategory] = "cat" [imageBaseUrl] = "imageBaseUrl"></app-showlist>

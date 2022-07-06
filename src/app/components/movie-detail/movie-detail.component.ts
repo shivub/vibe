@@ -4,7 +4,7 @@ import { forkJoin, mergeMap } from 'rxjs';
 import { MovieDetailModel } from 'src/app/models/MovieDetailModel';
 import { ReviewModel } from 'src/app/models/ReviewModel';
 import { ShowModel } from 'src/app/models/ShowModel';
-import { AppInitService } from 'src/app/services/AppinitService';
+import { UserService } from 'src/app/services/UserService';
 import { ConfigurationService } from 'src/app/services/ConfigurationService';
 import { ListService } from 'src/app/services/ListsService';
 import { ShowService } from 'src/app/services/ShowService';
@@ -32,7 +32,7 @@ export class MovieDetailComponent implements OnInit {
     private _cd: ChangeDetectorRef,
     private _listService: ListService,
     private _router: Router,
-    private _appInit: AppInitService) { }
+    private _userService: UserService) { }
   
 
   public get showDetail(){
@@ -61,7 +61,6 @@ export class MovieDetailComponent implements OnInit {
     this._configService.getImageConfiguration()
     .pipe(
       mergeMap((config) => {
-        console.log(config.images);
         this.imageBaseUrl = config.images.base_url;
         return this._showService.getMovieDetails(this._id);
       })
@@ -70,7 +69,6 @@ export class MovieDetailComponent implements OnInit {
       this.showDetail.backdrop_path = this.imageBaseUrl + 'w780/' + this.showDetail.backdrop_path;
       containerStyle.background = `linear-gradient(-45deg,rgba(42, 42, 42,0.9) 70%, transparent 100%) , url("${this.showDetail.backdrop_path}")`;
       this.cardContext = {id: this.showDetail.id, title: this.showDetail.title, name: '', poster_path: this.showDetail.poster_path, media_type: 'movie'}
-      console.log(this.cardContext);
       this.containerStyle = containerStyle;
       this.updateFlags();
       this._cd.detectChanges();
@@ -82,7 +80,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   public markWatchLater(){
-    if(!this._appInit.isUserLoggedIn()){
+    if(!this._userService.isUserLoggedIn()){
       this._router.navigateByUrl('/login');
       ReadableStreamDefaultController;
     }
@@ -95,7 +93,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   public markFavourite(){
-    if(!this._appInit.isUserLoggedIn()){
+    if(!this._userService.isUserLoggedIn()){
       this._router.navigateByUrl('/login');
       return;
     }
@@ -109,7 +107,7 @@ export class MovieDetailComponent implements OnInit {
   }
 
   public markWatched(){
-    if(!this._appInit.isUserLoggedIn()){
+    if(!this._userService.isUserLoggedIn()){
       this._router.navigateByUrl('/login');
       return;
     }

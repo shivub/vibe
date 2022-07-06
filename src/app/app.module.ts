@@ -18,7 +18,7 @@ import { TvShowDetailComponent } from './components/tv-show-detail/tv-show-detai
 import { GoogleLoginProvider, SocialAuthService, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { GOOGLE_CLIENT_ID } from './shared/constants/category.const';
 import { LoginComponent } from './components/login/login.component';
-import { AppInitService } from './services/AppinitService';
+import { UserService } from './services/UserService';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddMovieComponent } from './components/add-movie/add-movie.component';
 import { AddTvComponent } from './components/add-tv/add-tv.component';
@@ -30,9 +30,9 @@ function initializeConfig(configService: ConfigurationService){
   }
 }
 
-function initializeApp(appInit: AppInitService){
+function initializeApp(userService: UserService){
   return () => {
-    appInit.getUserDetail();
+    userService.getUserDetail();
     return new Promise<void>((resolve,reject) => resolve())
   }
 }
@@ -69,7 +69,7 @@ function initializeApp(appInit: AppInitService){
     },
     {
       provide: APP_INITIALIZER,
-      deps: [AppInitService],
+      deps: [UserService],
       multi: true,
       useFactory: initializeApp
     },

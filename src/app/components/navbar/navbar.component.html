@@ -4,12 +4,12 @@
     <a (click) = "changeActiveRoute('movie')" mat-button [ngClass]="{'active': activeRoute === 'movie'}" [routerLink] = "['/browse']" [queryParams] = "{category: 'movie'}" >Movies</a>
     <a (click) = "changeActiveRoute('tv')" mat-button [ngClass]="{'active': activeRoute === 'tv'}" [routerLink] = "['/browse']" [queryParams] = "{category: 'tv'}">Tv Shows</a>
     <div class="fill-remaining-space"></div>
-    <button mat-button [matMenuTriggerFor]="addMenu"><mat-icon>add</mat-icon></button>
+    <button *ngIf = "isUserAdmin" mat-button [matMenuTriggerFor]="addMenu"><mat-icon>add</mat-icon></button>
     <button mat-button (click) = "changeActiveSerach()"><mat-icon class = "search-icon">search</mat-icon></button>
     <a (click) = "changeActiveRoute('library')" [ngClass] = "{'active': activeRoute === 'library'}" mat-button routerLink = "library"><mat-icon>video_library</mat-icon></a>
     <button mat-button [matMenuTriggerFor]="languageMenu" class = "lang-selector"><span class="nav-icon">{{activeLanguage}}</span></button>
-    <button *ngIf = "!photoUrl" mat-button (click) = "onAccoutClick()"><mat-icon class = "nav-icon">account_circle</mat-icon></button>
-    <button *ngIf = "photoUrl" mat-button (click) = "onAccoutClick()"><img class = "avatar" width = "40" height = "40" [src]="photoUrl"></button>
+    <button *ngIf = "!photoUrl" mat-button ><mat-icon class = "nav-icon">account_circle</mat-icon></button>
+    <button [matMenuTriggerFor] = "profilemenu" mat-button *ngIf = "photoUrl" mat-button ><img class = "avatar" width = "40" height = "40" [src]="photoUrl"></button>
 </mat-toolbar>
 
 <mat-menu #languageMenu="matMenu" class = "customize">
@@ -22,6 +22,17 @@
     <button mat-menu-item (click) = "addMovie()">Add Movie</button>
     <button mat-menu-item (click) = "addTvShow()">Add Tv Show</button>
 </mat-menu>
+
+<mat-menu #profilemenu="matMenu" class = "customize">
+    <button *ngIf = "!isUserPrime()" mat-menu-item (click) = "getPrime()">Get Prime</button>
+    <button *ngIf = "isUserPrime()" mat-menu-item (click) = "getPrime()"><mat-icon color = "accent">done</mat-icon> Prime</button>
+    <button mat-menu-item (click) = getAdminRights()>
+        <span *ngIf = "!isUserAdmin">Get Admin Rights</span>
+        <span *ngIf = "isUserAdmin"><mat-icon color = "accent">done</mat-icon> Admin</span>
+    </button>
+    <button mat-menu-item (click) = signOut()>Sign Out</button>
+</mat-menu>
+
 
 <mat-toolbar *ngIf = "isSearchActive" class = "toolbar">
     <input #searchBar (input) = "search(searchBar.value)" class = "search-bar" placeholder="search movies and tv shows" type="text">
