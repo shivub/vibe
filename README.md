@@ -38,15 +38,6 @@ Want to watch prime content. Upgrade yourself as prime user by clicking on upgra
 Admins can add new movies and tv shows in database of movies.
 
 
-User can filter the shows based on the media type like Tv shows and movies 
-User can log in using google authentication.
-Logged in user can rate the watched shows and mark it fovourite or watch later.
-The user can access the favourite and watch later list from its library.
-User can also search for the movies using the search icon in nav bar.
-
-
-
-
 # For contributors
 
 ## Github Repo
