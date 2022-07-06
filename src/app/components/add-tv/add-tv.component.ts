@@ -18,8 +18,8 @@ export class AddTvComponent implements OnInit {
     this.movieForm = this._formBuilder.group({
       name: ['', Validators.required],
       language: ['', Validators.required],
-      overview: ['', Validators.required, Validators.minLength(100), Validators.maxLength(500)],
-      tagline: ['', Validators.required, Validators.maxLength(50)],
+      overview: ['', [Validators.required, Validators.minLength(100), Validators.maxLength(500)]],
+      tagline: ['', [Validators.required, Validators.maxLength(50)]],
       seasonsNumber: ['', Validators.required],
       episodesNumber: ['', Validators.required]
     })

@@ -37,14 +37,20 @@
     </section>
     <section class="reviews">
         <div class = "header">Reviews</div>
-        <form class = "review-form">
+        <form *ngIf = "!isReviewAdded && user !== undefined && user !== null" class = "review-form" #reviewForm="ngForm" (ngSubmit) = "onReviewSubmit()">
             <mat-form-field class="rate-textbox" appearance="fill">
                 <mat-label>Rate Movie</mat-label>
-                <input matInput placeholder="Rate out of 10">
+                <input required #movieRate = "ngModel" [max] = 10  type = "number" name = "movieRate"[(ngModel)] = "rating" matInput placeholder="Rate out of 10">
+                <div [style.color] = "'red'" [hidden] = "movieRate.valid || movieRate.pristine">
+                    Required field and cannot be greater than 10
+                </div>
               </mat-form-field>
             <mat-form-field class="review-text-area" appearance="fill">
                 <mat-label>Write a Review</mat-label>
-                <textarea matInput placeholder="What you feel about movie"></textarea>
+                <textarea required name = "movieReview" [(ngModel)] = "review" matInput placeholder="What you feel about movie"></textarea>
+                <div [style.color] = "'red'" [hidden] = "movieRate.valid || movieRate.pristine">
+                    Required field
+                </div>
             </mat-form-field>
             <button class = "submit-btn" mat-button> Submit </button>
         </form>

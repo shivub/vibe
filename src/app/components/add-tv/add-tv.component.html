@@ -20,8 +20,12 @@
         <mat-card class = "control-card">
             <mat-form-field class = "form-control">
                 <mat-label>Overview</mat-label>
-                <textarea matInput placeholder="Description of Movie" formControlname = "overview"></textarea>
+                <textarea matInput placeholder="Description of Movie" formControlName = "overview"></textarea>
             </mat-form-field>
+            <div [style.color] = "'red'" 
+            *ngIf="movieForm.get('overview')?.invalid && (movieForm.get('overview')?.dirty || movieForm.get('overview')?.touched)">
+                Characters should be between 100 to 500
+            </div>
         </mat-card>
 
         <mat-card class = "control-card">
@@ -29,6 +33,10 @@
                 <mat-label>Tagline</mat-label>
                 <textarea matInput placeholder="popular tagline of Movie" formControlName = "tagline"></textarea>
             </mat-form-field>
+            <div [style.color] = "'red'" 
+            *ngIf="movieForm.get('tagline')?.invalid && (movieForm.get('tagline')?.dirty || movieForm.get('tagline')?.touched)">
+                Characters should be less than 50
+            </div>
         </mat-card>
 
         <mat-card class = "control-card">

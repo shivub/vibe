@@ -19,15 +19,16 @@ export class AddMovieComponent implements OnInit {
     this.movieForm = this._formBuilder.group({
       title: ['', Validators.required],
       language: ['', Validators.required],
-      overview: ['', Validators.required, Validators.minLength(100), Validators.maxLength(500)],
-      tagline: ['', Validators.required, Validators.maxLength(50)],
+      overview: ['', [Validators.required, Validators.minLength(100), Validators.maxLength(500)]],
+      tagline: ['', [Validators.required, Validators.maxLength(50)]],
       adult: ['', Validators.required],
       releaseDate: ['', Validators.required],
-      runtime: ['', Validators.required]
+      runtime: ['', [Validators.required, Validators.max(240)]]
     })
   }
 
   public onSubmit(form: FormGroup){
+    debugger
     if(form.invalid)
       return;
     this._movieService.saveMovie(form.value);

@@ -59,21 +59,7 @@ export class ShowService{
         return this._http.get<TvDetailModel>(this._baseUrl + `/tv/${id}`, {responseType: 'json', params});
     }
 
-    public getMovieReviews(id: number) {
-        const params = new HttpParams({fromString: `api_key=${this._apiKey}`});
-        return this._http.get<ResponseWrapper<ReviewModel[]>>(
-            this._baseUrl + `movie/${id}/reviews`,
-            {responseType: 'json', params}
-            );
-    }
-
-    public getTvReviews(id: number) {
-        const params = new HttpParams({fromString: `api_key=${this._apiKey}`});
-        return this._http.get<ResponseWrapper<ReviewModel[]>>(
-            this._baseUrl + `tv/${id}/reviews`,
-            {responseType: 'json', params}
-            );
-    }
+    
 
 
     private getMovies(){

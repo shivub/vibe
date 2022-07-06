@@ -8,6 +8,8 @@ import { UserService } from 'src/app/services/UserService';
 import { ConfigurationService } from 'src/app/services/ConfigurationService';
 import { ListService } from 'src/app/services/ListsService';
 import { ShowService } from 'src/app/services/ShowService';
+import { ReviewService } from 'src/app/services/ReviewService';
+import { SocialUser } from '@abacritt/angularx-social-login';
 
 @Component({
   selector: 'app-tv-show-detail',
@@ -17,13 +19,16 @@ import { ShowService } from 'src/app/services/ShowService';
 export class TvShowDetailComponent implements OnInit {
   private _id!: number;
   private _showDetail!: TvDetailModel;
-
+  public user!: SocialUser;
   public imageBaseUrl!: string;
   public cardContext!: ShowModel;
   public isWatched!: boolean;
   public isFav!: boolean;
   public isWatchLater!: boolean;
   public reviews!: ReviewModel[];
+  public rating!: number;
+  public review!: string;
+  public isReviewAdded: boolean = false;
 
   constructor(
     private _route: ActivatedRoute, 
@@ -32,7 +37,8 @@ export class TvShowDetailComponent implements OnInit {
     private _cd: ChangeDetectorRef,
     private _listService: ListService,
     private _router: Router,
-    private _userService: UserService) { }
+    private _userService: UserService,
+    private _reviewService: ReviewService) { }
   
 
   public get showDetail(){
@@ -72,8 +78,13 @@ export class TvShowDetailComponent implements OnInit {
       this._cd.detectChanges();
     });
 
-    this._showService.getTvReviews(this._id).subscribe((res) => {
+    this._reviewService.getTvReviews(this._id).subscribe((res) => {
       this.reviews = res.results;
+    });
+
+    this._userService.getUser().subscribe(user => {
+      this.user = user.userDetails as SocialUser;
+      this.isReviewAdded = !this.reviews?.some(r => r.author_details.username === this.user.email);
     });
   }
 
@@ -113,6 +124,21 @@ export class TvShowDetailComponent implements OnInit {
       return;
     this.isWatched = true;
     this._listService.addToWatched(this.cardContext);
+  }
+
+  public onReviewSubmit()
+  {
+    const review = new ReviewModel(
+      this.user.email,
+      this.user.firstName, 
+      this.rating, 
+      this.review, 
+      this.showDetail.id, 
+      'tv'
+    );
+    this._reviewService.saveReview(review);
+    this.reviews.push(review);
+    this.isReviewAdded = true;
   }
 
   private updateFlags(){
